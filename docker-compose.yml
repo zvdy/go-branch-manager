@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ssh-server1:
+    image: debian:latest
+    container_name: ssh-server1
+    ports:
+      - "2222:22"
+    volumes:
+      - ./authorized_keys:/home/user/.ssh/authorized_keys
+    command: bash -c "apt-get update && apt-get install -y openssh-server sudo && useradd -m -s /bin/bash user && echo 'user:userpassword' | chpasswd && mkdir -p /home/user/.ssh && chown -R user:user /home/user/.ssh && chmod 700 /home/user/.ssh && chmod 600 /home/user/.ssh/authorized_keys && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && mkdir /var/run/sshd && /usr/sbin/sshd -D"
+
+  ssh-server2:
+    image: debian:latest
+    container_name: ssh-server2
+    ports:
+      - "2223:22"
+    volumes:
+      - ./authorized_keys:/home/user/.ssh/authorized_keys
+    command: bash -c "apt-get update && apt-get install -y openssh-server sudo && useradd -m -s /bin/bash user && echo 'user:userpassword' | chpasswd && mkdir -p /home/user/.ssh && chown -R user:user /home/user/.ssh && chmod 700 /home/user/.ssh && chmod 600 /home/user/.ssh/authorized_keys && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && mkdir /var/run/sshd && /usr/sbin/sshd -D"
+
+  ssh-server3:
+    image: debian:latest
+    container_name: ssh-server3
+    ports:
+      - "2224:22"
+    volumes:
+      - ./authorized_keys:/home/user/.ssh/authorized_keys
+    command: bash -c "apt-get update && apt-get install -y openssh-server sudo && useradd -m -s /bin/bash user && echo 'user:userpassword' | chpasswd && mkdir -p /home/user/.ssh && chown -R user:user /home/user/.ssh && chmod 700 /home/user/.ssh && chmod 600 /home/user/.ssh/authorized_keys && echo 'user ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && mkdir /var/run/sshd && /usr/sbin/sshd -D"

@@ -1,0 +1,11 @@
+{
+    "servers": {
+      "group1": {
+        "ssh-servers": [
+          "ssh-server1 localhost 2222",
+          "ssh-server2 localhost 2223",
+          "ssh-server3 localhost 2224"
+        ]
+      }
+    }
+  }
